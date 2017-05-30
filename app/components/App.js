@@ -15,11 +15,9 @@ const App = props => {
         <Nav/>
         <Switch>
           <Route exact path='/' component={Home}/>
-          <Route path='/Battle' component={Battle}/>
+          <Route exact path='/Battle' component={Battle}/>
           <Route path='/popular' component={Popular}/>
-          <Route render={function () {
-            return <p>Not Found</p>
-          }} />
+          <Route render={() => <p>Not Found</p>}/>
         </Switch>
       </div>
     </Router>
