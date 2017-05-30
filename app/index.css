@@ -24,3 +24,24 @@ li {
   margin: 10px;
   font-weight: bold;
 }
+
+.popular-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.popular-rank {
+  font-size: 20px;
+  margin: 20px;
+}
+
+.popular-item {
+  margin: 20px;
+  text-align: center;
+}
+
+.avatar {
+  width: 150px;
+  border-radius: 50%;
+}

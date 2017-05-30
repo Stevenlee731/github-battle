@@ -1,5 +1,5 @@
-const React = require('react');
-const Popular = require('./Popular');
+const React = require('react')
+const Popular = require('./Popular')
 
 const App = props => {
   return (
