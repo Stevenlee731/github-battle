@@ -1,10 +1,10 @@
-var React = require('react');
-var PropTypes = require('prop-types');
-var api = require('../utils/api');
-var Loading = require('./Loading');
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
+import api from '../utils/api'
+import Loading from './Loading'
 
-function SelectLanguage (props) {
-  var languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python'];
+const SelectLanguage = props => {
+  var languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python']
   return (
     <ul className='languages'>
       {languages.map(function (lang) {
@@ -21,7 +21,7 @@ function SelectLanguage (props) {
   )
 }
 
-function RepoGrid (props) {
+const RepoGrid = props => {
   return (
     <ul className='popular-list'>
       {props.repos.map(function (repo, index) {
@@ -54,28 +54,30 @@ RepoGrid.propTypes = {
 SelectLanguage.propTypes = {
   selectedLanguage: PropTypes.string.isRequired,
   onSelect: PropTypes.func.isRequired,
-};
+}
 
-class Popular extends React.Component {
+class Popular extends Component {
   constructor(props) {
-    super();
+    super()
+
     this.state = {
       selectedLanguage: 'All',
       repos: null,
-    };
+    }
 
-    this.updateLanguage = this.updateLanguage.bind(this);
+    this.updateLanguage = this.updateLanguage.bind(this)
   }
   componentDidMount() {
     this.updateLanguage(this.state.selectedLanguage)
   }
+
   updateLanguage(lang) {
     this.setState(function () {
       return {
         selectedLanguage: lang,
         repos: null
       }
-    });
+    })
 
     api.fetchPopularRepos(lang)
       .then(function (repos) {
@@ -83,9 +85,10 @@ class Popular extends React.Component {
           return {
             repos: repos
           }
-        });
-      }.bind(this));
+        })
+      }.bind(this))
   }
+
   render() {
     return (
       <div>
@@ -100,4 +103,4 @@ class Popular extends React.Component {
   }
 }
 
-module.exports = Popular;
+export default Popular
