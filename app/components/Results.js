@@ -1,13 +1,13 @@
-var React = require('react');
-var PropTypes = require('prop-types');
-var queryString = require('query-string');
-var api = require('../utils/api');
-var Link = require('react-router-dom').Link;
-var PlayerPreview = require('./PlayerPreview');
-var Loading = require('./Loading');
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
+import queryString from 'query-string'
+import api from '../utils/api'
+import { Link } from 'react-router-dom'
+import PlayerPreview from './PlayerPreview'
+import Loading from './Loading'
 
-function Profile (props) {
-  var info = props.info;
+const Profile = props => {
+  const info = props.info
 
   return (
     <PlayerPreview username={info.login} avatar={info.avatar_url}>
@@ -28,7 +28,7 @@ Profile.propTypes = {
   info: PropTypes.object.isRequired,
 }
 
-function Player (props) {
+const Player = props => {
   return (
     <div>
       <h1 className='header'>{props.label}</h1>
@@ -44,9 +44,9 @@ Player.propTypes = {
   profile: PropTypes.object.isRequired,
 }
 
-class Results extends React.Component {
+class Results extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       winner: null,
       loser: null,
@@ -55,7 +55,7 @@ class Results extends React.Component {
     }
   }
   componentDidMount() {
-    var players = queryString.parse(this.props.location.search);
+    const players = queryString.parse(this.props.location.search)
 
     api.battle([
       players.playerOneName,
@@ -67,7 +67,7 @@ class Results extends React.Component {
             error: 'Looks like there was an error. Check that both users exist on Github.',
             loading: false,
           }
-        });
+        })
       }
 
       this.setState(function () {
@@ -77,14 +77,14 @@ class Results extends React.Component {
           loser: players[1],
           loading: false,
         }
-      });
-    }.bind(this));
+      })
+    }.bind(this))
   }
   render() {
-    var error = this.state.error;
-    var winner = this.state.winner;
-    var loser = this.state.loser;
-    var loading = this.state.loading;
+    const error = this.state.error
+    const winner = this.state.winner
+    const loser = this.state.loser
+    const loading = this.state.loading
 
     if (loading === true) {
       return <Loading />
@@ -116,4 +116,4 @@ class Results extends React.Component {
   }
 }
 
-module.exports = Results;
+export default Results
